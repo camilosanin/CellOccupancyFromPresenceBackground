@@ -39,7 +39,8 @@ spSummerEvents=SpatialPointsDataFrame(coords= spSummerEvents[,c("Longitude","Lat
 
 samplingEffort=raster(paste(dataVersFolder,"/samplingEffort/samplingEffort.grd",sep=""))
 
-
+##Extract and clean localities where speces sp has been observed##
+##################################################################
 
 sp="Oreothlypis_ruficapilla"
 rawLocDataFile=paste("./Data/eBird/Raw_eBird_byTaxon/",sp,".txt",sep="")
