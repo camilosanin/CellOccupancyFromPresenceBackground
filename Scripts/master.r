@@ -21,7 +21,7 @@ basicRasterCRS=CRS("+proj=longlat +datum=WGS84")
 
 totalSamEventsFile="~/LargeFilesGitHub/CellOccupancyFromPresenceBackground/SampligDatabase4Columns.csv" #where is the samping event data THIS FILES IS NOT ON GITHUB
 
-#source("./Scripts/cleaneBirdSamplingEvents.r")
+source("./Scripts/cleaneBirdSamplingEvents.r")
 
 #Resulting objects from cleaneBirdSamplingEvents.r:
 #spSummerEvents = cleaned Spatial data frame with all sampling events, coordinates and date
@@ -31,10 +31,10 @@ spSummerEvents=SpatialPointsDataFrame(coords= spSummerEvents[,c("Longitude","Lat
 
 #Create a sampling effort raster - right now the most basic approach: counting sampling events#
 ###############################################################################################
-#Resulting objects from cleaneBirdSamplingEvents.r:
+#Resulting objects from samplingEffortRasterCount.r:
 #SamplingEventsRaster = raster with extent and NAs of base raster and the number of sampling events in each cell
 
-#source("./Scripts/cleaneBirdSamplingEvents.r")
+#source("./Scripts/samplingEffortRasterCount.r")
 #samplingEffort=SamplingEventsRaster
 
 samplingEffort=raster(paste(dataVersFolder,"/samplingEffort/samplingEffort.grd",sep=""))
