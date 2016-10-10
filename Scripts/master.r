@@ -44,7 +44,7 @@ samplingEffort=raster(paste(dataVersFolder,"/samplingEffort/samplingEffort.grd",
 
 sp="Oreothlypis_ruficapilla"
 rawLocDataFile=paste("./Data/eBird/Raw_eBird_byTaxon/",sp,".txt",sep="")
-source("./Scripts/cleaneBirdPresenceLocalities.r")
+#source("./Scripts/cleaneBirdPresenceLocalities.r")
 #Resulting objects from cleaneBirdSamplingEvents.r:
 #SpSummerLocsSp = cleaned Spatial data frame with all record localities, sampling event id and coordinates and date
 #spRecordsCountRaster =  raster with extent and NAs of base raster and the number of sampling events in each cell
@@ -54,7 +54,9 @@ SpSummerLocsSp=SpatialPointsDataFrame(coords= summerLocsDF[,c("Longitude","Latit
 spRecordsCountRaster=raster(paste(dataVersFolder,"/PresenceLocalities/SummerLocalityCount/",sp,".grd",sep=""))
 
 proportion=spRecordsCountRaster/samplingEffort
-proportion[samplingEffort[]<10]=NA
-proportion[proportion[]>0.05]=NA
+proportion[samplingEffort[]<50]=NA
+#proportion[proportion[]>0.05]=NA
 proportion[proportion==0]=NA
-plot
+sum(is.na(proportion[])==F)
+plot(proportion)
+hist(log(proportion))
