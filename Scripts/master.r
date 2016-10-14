@@ -53,10 +53,31 @@ summerLocsDF=read.csv(paste(dataVersFolder,"/PresenceLocalities/TotalSummerLocs/
 SpSummerLocsSp=SpatialPointsDataFrame(coords= summerLocsDF[,c("Longitude","Latitude")], data=summerLocsDF[,c("SamplingEvent_id","year","month","day")],proj4string= basicRasterCRS)
 spRecordsCountRaster=raster(paste(dataVersFolder,"/PresenceLocalities/SummerLocalityCount/",sp,".grd",sep=""))
 
-proportion=spRecordsCountRaster/samplingEffort
-proportion[samplingEffort[]<50]=NA
-#proportion[proportion[]>0.05]=NA
-proportion[proportion==0]=NA
-sum(is.na(proportion[])==F)
-plot(proportion)
-hist(log(proportion))
+##Likelihood Function across grid cells  for y records given N sampling events #######
+##with a costant occupancy (psy), detection (p) and false detection (q) probabilities#
+######################################################################################
+source("./Scripts/likelihoodFunctionConstantPsyPQ.r") #loads the likelihoodFunctionConstantPsyPQ function
+
+psy=0.5
+p=0.5
+q=0.5
+N=samplingEffort 
+y=spRecordsCountRaster
+nMin=1
+nMax=max(N[],na.rm=T)
+
+lfToOptimize=function(psy,p,q)
+  {
+  
+  logL=likelihoodFunctionConstantPsyPQ(psy=psy,p=p,q=q,N=samplingEffort,y=spRecordsCountRaster,nMin=1,nMax=100)
+  
+  message(paste("psy =",psy,"- p =",p,"- q =",q,"- LogL =",logL))
+  return(logL)
+}
+
+lfToOptimize(psy = 1, p=1,q=0)  
+
+library(bbmle)
+
+mleTry=mle2(minuslogl=lfToOptimize, start = list(psy = 0.5, p=0.5,q=0.5), method="L-BFGS-B", lower = c(psy = 0.0001, p = 0.0001,q = 0.0001),upper = c(psy = 0.9999, p = 0.9999,q = 0.9999))
+
