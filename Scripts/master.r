@@ -42,8 +42,8 @@ samplingEffort=raster(paste(dataVersFolder,"/samplingEffort/samplingEffort.grd",
 ##Extract and clean localities where speces sp has been observed##
 ##################################################################
 
-sp="Oreothlypis_ruficapilla"
-rawLocDataFile=paste("./Data/eBird/Raw_eBird_byTaxon/",sp,".txt",sep="")
+sp="Oreothlypis_celata"
+#rawLocDataFile=paste("./Data/eBird/Raw_eBird_byTaxon/",sp,".txt",sep="")
 #source("./Scripts/cleaneBirdPresenceLocalities.r")
 #Resulting objects from cleaneBirdSamplingEvents.r:
 #SpSummerLocsSp = cleaned Spatial data frame with all record localities, sampling event id and coordinates and date
@@ -98,7 +98,8 @@ q=mleTry@coef["q"]
 
 N=samplingEffort 
 y=spRecordsCountRaster
-nMin=1
+nMin=10
 nMax=max(N[],na.rm = T)
 
 ppRaster=posteriorOccProbabilityConstantPsyPQRaster(N,y,psy,p,q,nMin,nMax)
+plot(ppRaster)
