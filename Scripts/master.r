@@ -71,7 +71,7 @@ lfToOptimize=function(psy,p,q)
   
   logL=likelihoodFunctionConstantPsyPQ(psy=psy,p=p,q=q,N=samplingEffort,y=spRecordsCountRaster,nMin=1,nMax=100)
   
-  message(paste("psy =",psy,"- p =",p,"- q =",q,"- LogL =",logL))
+  message(paste("psy =",psy,"- p =",p,"- q =",q,"- -LogL =",logL))
   return(logL)
 }
 
