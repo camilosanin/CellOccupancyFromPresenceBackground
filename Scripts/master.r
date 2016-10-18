@@ -79,5 +79,5 @@ lfToOptimize(psy = 1, p=1,q=0)
 
 library(bbmle)
 
-mleTry=mle2(minuslogl=lfToOptimize, start = list(psy = 0.5, p=0.5,q=0.5), method="L-BFGS-B", lower = c(psy = 0.0001, p = 0.0001,q = 0.0001),upper = c(psy = 0.9999, p = 0.9999,q = 0.9999))
+mleTry=mle2(minuslogl=lfToOptimize, start = list(psy = 0.5, p=0.5,q=0.1), method="L-BFGS-B", lower = c(psy = 0.0001, p = 0.0001,q = 0.0001),upper = c(psy = 0.9999, p = 0.9999,q = 0.9999))
 
