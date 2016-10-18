@@ -1,7 +1,7 @@
-#####################################################################################################################################
-#Estimate the -log likelihood of ################
-#in the region specified by a basic raster, with unique sampling events then create a .csv file with the cleaned up localities ######
-#####################################################################################################################################
+##########################################################################################################################################
+#Estimate the -log likelihood of the detection across a grid based on rasters of N sampling events and y presence records ################
+#psi, p and q are constant across the study region and can only range between 0.0001 and 0.009 and cell are treated as independent  ######
+##########################################################################################################################################
 
 ###Objects from master###
 
@@ -61,7 +61,7 @@ yi=y[i]  #detection in call i
 
 if(is.infinite(choose(n=ni,k=yi))){next} #Too large numbers are ignored
 
-likelihoodi=log((choose(n=ni,k=yi)*((psy)*(p^yi)*((1-p)^(ni-yi))))+((1-psy)*(q^yi))) #Likelihood function in cell i
+likelihoodi=log((choose(n=ni,k=yi)*((psy)*(p^yi)*((1-p)^(ni-yi))))+(choose(n=ni,k=yi)*((1-psy)*(q^yi)*((1-q)^(ni-yi))))) #Likelihood function in cell i
 
 likelihoodV=c(likelihoodV,likelihoodi)
 
