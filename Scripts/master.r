@@ -81,3 +81,24 @@ library(bbmle)
 
 mleTry=mle2(minuslogl=lfToOptimize, start = list(psy = 0.5, p=0.5,q=0.1), method="L-BFGS-B", lower = c(psy = 0.0001, p = 0.0001,q = 0.0001),upper = c(psy = 0.9999, p = 0.9999,q = 0.9999))
 
+
+## Creates a posterior probability raster of occurrence based on the parameters estimated by maximum likelihood above######
+###########################################################################################################################
+
+source("./Scripts/posteriorOccProbabilityConstantPsyPQRaster.r") #loads the posteriorOccProbabilityConstantPsyPQRaster  function
+
+
+#psy=0.0754081
+#p=0.2697834
+#q=0.0018690
+
+psy=mleTry@coef["psy"]
+p=mleTry@coef["p"]
+q=mleTry@coef["q"]
+
+N=samplingEffort 
+y=spRecordsCountRaster
+nMin=1
+nMax=max(N[],na.rm = T)
+
+ppRaster=posteriorOccProbabilityConstantPsyPQRaster(N,y,psy,p,q,nMin,nMax)

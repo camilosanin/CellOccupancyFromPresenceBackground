@@ -57,7 +57,7 @@ likelihoodV=vector() #vector in which log likelihoods for all cell will be accum
 for (i in whichCellsSampled){
   
 ni=N[i]  #Sampling events in cell i
-yi=y[i]  #detection in call i
+yi=y[i]  #detection in cell i
 
 if(is.infinite(choose(n=ni,k=yi))){next} #Too large numbers are ignored
 
