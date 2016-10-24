@@ -42,7 +42,7 @@ samplingEffort=raster(paste(dataVersFolder,"/samplingEffort/samplingEffort.grd",
 ##Extract and clean localities where speces sp has been observed##
 ##################################################################
 
-sp="Oreothlypis_ridgwayi"
+sp="Oreothlypis_ruficapilla"
 #rawLocDataFile=paste("./Data/eBird/Raw_eBird_byTaxon/",sp,".txt",sep="")
 #source("./Scripts/cleaneBirdPresenceLocalities.r")
 #Resulting objects from cleaneBirdSamplingEvents.r:
@@ -69,7 +69,7 @@ nMax=max(N[],na.rm=T)
 lfToOptimize=function(psy,p,q)
   {
   
-  logL=likelihoodFunctionConstantPsyPQ(psy=psy,p=p,q=q,N=samplingEffort,y=spRecordsCountRaster,nMin=1,nMax=100)
+  logL=likelihoodFunctionConstantPsyPQ(psy=psy,p=p,q=q,N=samplingEffort,y=spRecordsCountRaster,nMin=1,nMax=max(samplingEffort[],na.rm=T))
   
   message(paste("psy =",psy,"- p =",p,"- q =",q,"- -LogL =",logL))
   return(logL)
@@ -79,7 +79,7 @@ lfToOptimize(psy = 1, p=1,q=0)
 
 library(bbmle)
 
-mleTry=mle2(minuslogl=lfToOptimize, start = list(psy = 0.5, p=0.5,q=0.1), method="L-BFGS-B", lower = c(psy = 0.0001, p = 0.0001,q = 0.0001),upper = c(psy = 0.9999, p = 0.9999,q = 0.9999))
+mleTry=mle2(minuslogl=lfToOptimize, start = list(psy = 0.5, p=0.5,q=0.1), method="L-BFGS-B", lower = c(psy = 0.00001, p = 0.00001,q = 0.00001),upper = c(psy = 0.99999, p = 0.99999,q = 0.99999))
 
 
 ## Creates a posterior probability raster of occurrence based on the parameters estimated by maximum likelihood above######
