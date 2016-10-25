@@ -57,7 +57,6 @@ if(psy>0.99999){
     
 whichCellsSampled=which(is.na(N[])==F&N[]!=0&N[]>=nMin&N[]<=nMax) #List the cell numbers that should be used for likelihood stimate (Has been sampled at least nMin but no more than nMax times)
 
-i=912
 
 likelihoodV=vector() #vector in which log likelihoods for all cell will be accumulated
 
@@ -77,10 +76,10 @@ logBinomialCoeff=ni*H(yi/ni)
   logBinomialCoeff=log(choose(n=ni,k=yi))
 } 
 
-logSecondA=log(psy)+(log(p)*yi)+(log(1-p)*(ni-yi))
+logSecondA=log(psy)+(log(p)*yi)+(log(1-p)*(ni-yi)) #Log of the probability of dectection if the species is present (psy) and a portion of false negatives(1-p)
 
 
-logSecondB=log(1-psy)+(log(q)*yi)+(log(1-q)*(ni-yi))
+logSecondB=log(1-psy)+(log(q)*yi)+(log(1-q)*(ni-yi)) #Log of the probability of dectection if the species is not present (1-psy) and a portion of observations are false negatives (q) 
 
 
 #Log second part of the binomial (i.e. ordered combinations)
