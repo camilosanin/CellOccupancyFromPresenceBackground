@@ -55,7 +55,7 @@ if(psy>0.99999){
     message("q out of bounds")
   }
     
-whichCellsSampled=which(is.na(N[])==F&N[]!=0&N[]>=nMin&N[]<=nMax) #List the cell numbers that should be used for likelihood stimate (Has been sampled at least nMin but no more than nMax times)
+whichCellsSampled=which(is.na(N[])==F&N[]!=0&N[]>=nMin&N[]<=nMax) #List the cell numbers that should be used for likelihood estimate (Has been sampled at least nMin but no more than nMax times)
 
 
 likelihoodV=vector() #vector in which log likelihoods for all cell will be accumulated

@@ -16,7 +16,6 @@
 
 simulateConstantPsyPR=function(d,psy,smean,ssdev,p,q){
   
-
 baseRaster = raster(nrows=d,ncols=d, xmn=0,xmx=100,ymn=0,ymx=100)
 
 ##Create raster of true occurrences
