@@ -69,7 +69,7 @@ nMax=max(N[],na.rm=T)
 lfToOptimize=function(psy,p,q)
   {
   
-  logL=likelihoodFunctionConstantPsyPQ(psy=psy,p=p,q=q,N=samplingEffort,y=spRecordsCountRaster,nMin=1,nMax=max(samplingEffort[],na.rm=T))
+  logL=likelihoodFunctionConstantPsyPQ(psy=psy,p=p,q=q,N=samplingEffort,y=totalDetections,nMin=1,nMax=100000)
   
   message(paste("psy =",psy,"- p =",p,"- q =",q,"- -LogL =",logL))
   return(logL)
@@ -88,9 +88,9 @@ mleTry=mle2(minuslogl=lfToOptimize, start = list(psy = 0.5, p=0.5,q=0.1), method
 source("./Scripts/posteriorOccProbabilityConstantPsyPQRaster.r") #loads the posteriorOccProbabilityConstantPsyPQRaster  function
 
 
-#psy=0.0754081
-#p=0.2697834
-#q=0.0018690
+psy=0.0754081
+p=0.2697834
+q=0.0018690
 
 psy=mleTry@coef["psy"]
 p=mleTry@coef["p"]
