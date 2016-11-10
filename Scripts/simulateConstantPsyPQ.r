@@ -55,6 +55,13 @@ totalDetections = trueDetections + falseDetections
 finalStack=stack(trueOcc,samplingEffort,trueDetections,falseDetections,totalDetections)
 names(finalStack)=c("trueOcc","samplingEffort","trueDetections","falseDetections","totalDetections")
 
+truePsy=sum(finalStack[["trueOcc"]][])/sum(is.na(finalStack[["trueOcc"]][])==F)
+sampledPsy=sum(finalStack[["trueOcc"]][finalStack[["samplingEffort"]][]!=0])/length(finalStack[["trueOcc"]][finalStack[["samplingEffort"]][]!=0])
+trueP=sum(finalStack[["trueDetections"]][finalStack[["trueOcc"]][]==1])/sum(finalStack[["samplingEffort"]][finalStack[["trueOcc"]][]==1])
+trueQ=sum(finalStack[["falseDetections"]][finalStack[["trueOcc"]][]==0])/sum(finalStack[["samplingEffort"]][finalStack[["trueOcc"]][]==0])
+
+message(paste("True psy =",truePsy,"- Sampled psy =",sampledPsy, "- True p =",trueP,"- True q =",trueQ))
+
 return(finalStack)
 
 }
