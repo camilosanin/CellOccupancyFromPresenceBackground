@@ -103,3 +103,6 @@ nMax=max(N[],na.rm = T)
 
 ppRaster=posteriorOccProbabilityConstantPsyPQRaster(N,y,psy,p,q,nMin,nMax)
 plot(ppRaster)
+
+
+#####GRAPHS NEED TO BE ANNOTATED
